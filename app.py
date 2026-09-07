@@ -6,7 +6,7 @@ st.set_page_config(page_title="Task & Mood Tracker", layout="centered")
 st.title("🎓 Task & Mood Tracker :heart:")
 
 # Backend API Base URL Configuration
-API_URL = st.sidebar.text_input("Backend API Base URL", value="https://task-and-mood.onrender.com/")
+API_URL = st.sidebar.text_input("Backend API Base URL", value="https://task-and-mood.onrender.com")
 
 
 # Navigation Menu
@@ -115,6 +115,8 @@ elif option == "Update Entry":
 
     if st.button("Load Entry"):
         response = requests.get(f"{API_URL}/details")
+        st.write("Status code:", response.status_code)
+        st.write("Response:", response.text)
         data = response.json()
         for entry in data:
             if entry["id"] == id:
