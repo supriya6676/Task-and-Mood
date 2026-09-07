@@ -114,7 +114,7 @@ elif option == "Update Entry":
     id = st.number_input("Enter Entry ID to Update", min_value=0, step=1)
 
     if st.button("Load Entry"):
-        response = requests.get(f"{API_URL}/details")
+        response = requests.put(f"{API_URL}/details")
         st.write("Status code:", response.status_code)
         st.write("Response:", response.text)
         data = response.json()
