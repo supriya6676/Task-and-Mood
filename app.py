@@ -1,13 +1,13 @@
 import requests
 import streamlit as st
-
+# Streamlit frontend
 # Configure Page
 st.set_page_config(page_title="Task & Mood Tracker", layout="centered")
 st.title("🎓 Task & Mood Tracker :heart:")
 
 # Backend API Base URL Configuration
-API_URL = st.sidebar.text_input("Backend API Base URL", value="https://task-and-mood.onrender.com")
-
+# API_URL = st.sidebar.text_input("Backend API Base URL", value="https://task-and-mood.onrender.com")
+API_URL = "https://task-and-mood.onrender.com"
 
 # Navigation Menu
 option = st.sidebar.selectbox(
@@ -33,7 +33,9 @@ if option == "View All Entries":
     if st.button("Fetch entries"):
         try:
             params ={"task":task_filter} if task_filter else{}
-            response = requests.get(f"{API_URL}/details/",params=params)
+            response = requests.get(f"{API_URL}/details",params=params)
+            st.write("Status code:", response.status_code)
+            st.write("Response:", response.text)
             data=response.json()
             if data:
                 st.json(data)
@@ -98,7 +100,7 @@ elif option == "Add New Entry":
                 payload = {"task": task, "status": status, "mood": mood}
                 try:
                     response = requests.post(
-                        f"{API_URL}/send_data/", json=payload
+                        f"{API_URL}/send_data", json=payload
                     )
                     st.success("entry created successfully!")
                     st.json(response.json())
