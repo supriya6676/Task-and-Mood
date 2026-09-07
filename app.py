@@ -6,7 +6,7 @@ st.set_page_config(page_title="Task & Mood Tracker", layout="centered")
 st.title("🎓 Task & Mood Tracker :heart:")
 
 # Backend API Base URL Configuration
-API_URL = st.sidebar.text_input("Backend API Base URL", value="https://task-mood.onrender.com")
+API_URL = st.sidebar.text_input("Backend API Base URL", value="https://task-and-mood.onrender.com/")
 
 
 # Navigation Menu
